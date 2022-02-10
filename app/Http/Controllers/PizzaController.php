@@ -74,18 +74,12 @@ class PizzaController extends Controller
 
 
         $order = new Order();
-        $order->first_name = $request->input('first_name');
-        $order->last_name = $request->input('last_name');
-        $order->address = $request->input('address');
-        $order->phone = $request->input('phone');
-        $order->zipcode = $request->input('zipcode');
-        $order->city = $request->input('city');
         $order->status = $request->input('status');
 
 
         Auth::user()->orders()->save($order);
 
-        Session::forget('cart');
+        
         return redirect()->route('shop.index')->with('success', 'Successfully purchased pizzas!');
 
     }
